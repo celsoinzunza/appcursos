@@ -22,6 +22,5 @@ urlpatterns = [
     path("register/", include(("register.urls", "register"), namespace="register")),
     #path("cursoevento/", include(("cursoevento.urls", "cursoevento"), namespace="cursoevento")),
     path("cuestionarios/", include(("cuestionarios.urls", "cuestionarios"), namespace="cuestionarios")),
-    path("alumnos/", include(("alumnos.urls", "alumnos"), namespace="alumnos")),
     path("catalogos/", include(("catalogos.urls", "catalogos"), namespace="catalogos")),
 ]
