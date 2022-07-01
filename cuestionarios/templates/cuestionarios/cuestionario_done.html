@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customcss %}
+{% endblock customcss %}
+
+{% block title %}
+Registro Form
+{% endblock title %}
+
+{%block header %}
+Formulario de registro al curso <small>{{ evento }}</small>
+{% endblock header %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="#">Inicio</a></li>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+<div class="col-lg-6 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Respuestas recibidas correctamente</h5>
+
+        <p class="card-text">
+          Tus respeustas se han recibido correctamente y nos ayudaran a merjorar la calidad de nuestros cursos.
+        </p>
+        <a href="https://cursos.iagrinet.com/cursoventas" class="card-link">Inicio</a>
+      </div>
+    </div>
+  </div>
+  <!-- /.col-md-6 -->
+</div>
+{% endblock content %}
+
+{% block customjs %}
+
+{% endblock customjs %}
+
+{% block docready %}
+
+{% endblock docready %}

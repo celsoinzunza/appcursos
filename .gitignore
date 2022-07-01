@@ -1,0 +1,7 @@
+
+**/__pycache__/
+/static/pages/
+db.sqlite3
+/.venv/
+/.venviagri/
+/.vscode/
