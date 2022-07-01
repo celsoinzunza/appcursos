@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'cursoevento',
     'register',
     'core',
-    'alumnos',
     'catalogos'
 ]
 
