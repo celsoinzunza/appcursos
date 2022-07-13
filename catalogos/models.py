@@ -153,3 +153,27 @@ class Alumnos(models.Model):
     def __str__(self):
         return self.first_name
 
+class Sedes(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Nombre de la sede")
+    domicilio = models.CharField(max_length=50, verbose_name="Domicilio",  null=True, blank=True)
+    Estado = models.CharField(max_length=50, verbose_name="Estado",  null=True, blank=True)
+    Ciudad = models.CharField(max_length=50, verbose_name="Ciudad", null=True, blank=True)
+    cp = models.CharField(max_length=50, verbose_name="Codigo postal", null=True, blank=True)
+    telefono = models.CharField(max_length=50, verbose_name="Telefono",  null=True, blank=True)
+    rfc = models.CharField(max_length=50, verbose_name="RFC",  null=True, blank=True)
+    banco = models.CharField(max_length=50, verbose_name="Banco",  null=True, blank=True)
+    cuentabancaria = models.CharField(max_length=50, verbose_name="Cuenta Bancaria",  null=True, blank=True)
+    nombrecontacto = models.CharField(max_length=50, verbose_name="Nombre contacto",  null=True, blank=True)
+    capacidad = models.IntegerField(verbose_name="Capacidad", null=True, blank=True)
+    status = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = "cursos_sedes"
+        verbose_name = "Sede"
+        verbose_name_plural = "Sedes"
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name

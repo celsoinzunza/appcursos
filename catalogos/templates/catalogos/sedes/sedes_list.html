@@ -1,0 +1,147 @@
+{% extends 'fixed-topnav.html' %} 
+{% load static %} 
+{% block customcss %}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}" />
+<link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}" />
+<link rel="stylesheet" href="{% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}" />
+{% endblock customcss %}
+ {% block title %} Sedes List {% endblock title %} 
+ {% block subtitle %}
+<li class="breadcrumb-item nav-link"><strong>Sedes</strong></li>
+{% endblock subtitle %} {% block headerbutton %}
+<div class="col-sm-6">
+  <div class="float-sm-left">
+    <a class="btn btn-sm btn-success" type="button" href="add"><i class="fa fa-plus-circle"></i> Agregar sedes</a>
+  </div>
+</div>
+{% endblock headerbutton %}
+ {% block content %}
+
+<!-- Main content -->
+
+<!-- Default box -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Lista de Sedes</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="col-sm-6">
+      <div class="float-sm-left">
+        <a class="btn btn-sm btn-success" type="button" href="add"><i class="fa fa-plus-circle"></i> Agregar sede</a>
+      </div>
+    </div>
+
+    <table id="example1" class="table table-bordered table-striped table_list">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Domicilio</th>
+          <th>Estado</th>
+          <th>Ciudad</th>
+          <th>Telefono</th>
+          <th>Contacto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in sedes_list %}
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.domicilio }}</td>
+          <td>{{ item.Estado }}</td>
+          <td>{{ item.Ciudad }}</td>
+          <td>{{ item.telefono }}</td>
+          <td>{{ item.nombrecontacto }}</td>
+          <td class="text-right py-0 align-middle">
+            <div class="btn-group btn-group-sm">
+              <a href="{% url 'catalogos:sedes_edit' item.id %}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+              <button data-url="{% url 'catalogos:sedes_delete' item.pk %}"
+                title="Eliminar" class="btn btn-danger js-view-delete">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Descripcion 1</th>
+          <th>Descripcion 2</th>
+          <th>Descripcion 3</th>
+          <th>Categoria</th>
+          <th>Status</th>
+          <th>Acciones</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- /.card-body -->
+</div>
+<!-- /.card -->
+
+{% endblock content %} 
+{% block customjs %}
+<!-- DataTables  & Plugins -->
+<script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1")
+      .DataTable({
+        responsive: true,
+        lengthChange: false,
+        autoWidth: false,
+        buttons: {
+          buttons: [
+            { extend: "excel", className: "btn-sm" },
+            { extend: "print", className: "btn-sm" },
+            { extend: "colvis", className: "btn-sm", text: "Columnas" },
+          ],
+        },
+        language: {
+          lengthMenu: "Mostrar _MENU_ registros por pagina",
+          zeroRecords: "No hay registros",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ registros.",
+          infoEmpty: "No hay registros disponibles",
+          infoFiltered: "(filtrando de _MAX_ registros en total)",
+          search: "Buscar:",
+          paginate: {
+            first: "Primero",
+            last: "Ultimo",
+            next: "Siguiente",
+            previous: "Anterior",
+          },
+        },
+      })
+      .buttons()
+      .container()
+      .appendTo("#example1_wrapper .col-md-6:eq(0)");
+  });
+</script>
+{% endblock customjs %} {% block docready %} {% endblock docready %}
